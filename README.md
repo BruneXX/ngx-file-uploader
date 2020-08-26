@@ -1,16 +1,9 @@
+Ngx file uploader is an Angular 9/10 + file uploader (fork from angular-file-uploader -> https://github.com/kzrfaisal/angular-file-uploader)
 
-Angular file uploader is an Angular 2/4/5/6/7/8/9/10 + file uploader module with Real-Time Progress Bar, Responsive design, Angular Universal Compatibility and multiple themes which includes Drag and Drop and much more.
-
-### Demo
-<https://kzrfaisal.github.io/#/afu>
 ### Install
 ```
 npm i ngx-file-uploader
 ```
-
-### Raising funds
-Support this package if it really helped you, send your support at [Patreon](https://www.patreon.com/kzrfaisal).
-
 ### Usage
 - Bootstrap.min.css is required.
   Include 
@@ -126,12 +119,12 @@ You have seen that by using 'resetUpload' property, you can reset the module eas
   - Now use this local reference variable in your xyz.component.ts file.
     ```javascript
         @ViewChild('fileUpload1')
-        private fileUpload1:  AngularFileUploaderComponent;
+        private fileUpload1:  NgxFileUploaderComponent;
     ```
-    - Remember to import ViewChild and AngularFileUploaderComponent properly in your component.
+    - Remember to import ViewChild and NgxFileUploaderComponent properly in your component.
       ```javascript
         import { ViewChild } from '@angular/core';
-        import { AngularFileUploaderComponent } from "ngx-file-uploader";
+        import { NgxFileUploaderComponent } from "ngx-file-uploader";
       ```
   - That's it.....all done, now just use
     ```javascript
@@ -168,7 +161,7 @@ You have seen that by using 'resetUpload' property, you can reset the module eas
 #### For Versions < 5.x : [Click Here !](https://github.com/kzrfaisal/ngx-file-uploader#for-versions--5x-) 
 ---
 #### For Versions =< 4.0.12 :
-- Replace NgxFileUploaderModule and AngularFileUploaderComponent with   FileUploadModule and FileUploadComponent respectively.
+- Replace NgxFileUploaderModule and NgxFileUploaderComponent with   FileUploadModule and FileUploadComponent respectively.
 ---
 #### For Versions < 2.x : [Click Here !](https://github.com/kzrfaisal/ngx-file-uploader#for-versions--2x-) 
 ---
@@ -289,12 +282,12 @@ You have seen that by using 'resetUpload' property, you can reset the module eas
   - Now use this local reference variable in your xyz.component.ts file.
     ```javascript
         @ViewChild('fileUpload1')
-        private fileUpload1:  AngularFileUploaderComponent;
+        private fileUpload1:  NgxFileUploaderComponent;
     ```
-    - Remember to import ViewChild and AngularFileUploaderComponent properly in your component.
+    - Remember to import ViewChild and NgxFileUploaderComponent properly in your component.
       ```javascript
         import { ViewChild } from '@angular/core';
-        import { AngularFileUploaderComponent } from "ngx-file-uploader";
+        import { NgxFileUploaderComponent } from "ngx-file-uploader";
       ```
   - That's it.....all done, now just use
     ```javascript
@@ -433,12 +426,12 @@ You have seen that by using 'resetUpload' property, you can reset the module eas
   - Now use this local reference variable in your xyz.component.ts file.
     ```javascript
         @ViewChild('fileUpload1')
-        private fileUpload1:  AngularFileUploaderComponent;
+        private fileUpload1:  NgxFileUploaderComponent;
     ```
-    - Remember to import ViewChild and AngularFileUploaderComponent properly in your component.
+    - Remember to import ViewChild and NgxFileUploaderComponent properly in your component.
       ```javascript
         import { ViewChild } from '@angular/core';
-        import { AngularFileUploaderComponent } from "ngx-file-uploader";
+        import { NgxFileUploaderComponent } from "ngx-file-uploader";
       ```
   - That's it.....all done, now just use
     ```javascript
