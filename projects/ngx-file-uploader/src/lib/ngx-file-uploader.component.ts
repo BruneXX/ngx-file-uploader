@@ -9,8 +9,7 @@ import {
 import {
   ReplaceTexts,
   AngularFileUploaderConfig,
-  UploadInfo,
-  UploadApi,
+  UploadInfo
 } from './ngx-file-uploader.types';
 import {
   HttpClient,
@@ -18,7 +17,6 @@ import {
   HttpParams,
   HttpEventType,
 } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-file-uploader',
@@ -41,44 +39,55 @@ export class NgxFileUploaderComponent implements OnChanges {
   everythingDone: EventEmitter<UploadInfo[]> = new EventEmitter<UploadInfo[]>();
 
   // Properties
-  theme: string;
-  id: number;
-  hideProgressBar: boolean;
-  maxSize: number;
-  uploadAPI: string;
-  method: string;
-  formatsAllowed: string;
-  multiple: boolean;
-  headers: HttpHeaders | { [header: string]: string | string[] };
-  params: HttpParams | { [param: string]: string | string[] };
-  responseType: string;
-  hideResetBtn: boolean;
-  hideSelectBtn: boolean;
-  allowedFiles: File[] = [];
-  notAllowedFiles: {
+  public theme: string;
+  public id: number;
+  public hideProgressBar: boolean;
+  public maxSize: number;
+  public uploadAPI: string;
+  public method: string;
+  public formatsAllowed: string;
+  public multiple: boolean;
+  public headers: HttpHeaders | { [header: string]: string | string[] };
+  public params: HttpParams | { [param: string]: string | string[] };
+  public responseType: string;
+  public hideResetBtn: boolean;
+  public hideSelectBtn: boolean;
+  public allowedFiles: File[] = [];
+  public notAllowedFiles: {
     fileName: string;
     fileSize: string;
     errorMsg: string;
   }[] = [];
-  Caption: string[] = [];
-  isAllowedFileSingle = true;
-  progressBarShow = false;
-  enableUploadBtn = false;
-  uploadMsg = false;
-  afterUpload = false;
-  uploadStarted = false;
-  uploadMsgText: string;
-  uploadMsgClass: string;
-  uploadPercent: number;
-  replaceTexts: ReplaceTexts;
-  currentUploads: any[] = [];
-  fileNameIndex = true;
+  public Caption: string[] = [];
+  public isAllowedFileSingle = true;
+  public progressBarShow = false;
+  public enableUploadBtn = false;
+  public uploadMsg = false;
+  public afterUpload = false;
+  public uploadStarted = false;
+  public uploadMsgText: string;
+  public uploadMsgClass: string;
+  public uploadPercent: number;
+  public replaceTexts: ReplaceTexts;
+  public currentUploads: any[] = [];
+  public fileNameIndex = true;
 
   private idDate: number = +new Date();
-
+  /**
+   * constructor
+   *
+   * @param   {HttpClient}  http
+   *
+   */
   constructor(private http: HttpClient) {}
-
-  ngOnChanges(changes: SimpleChanges) {
+  /**
+   * ngOnChanges
+   *
+   * @param   {SimpleChanges}  changes
+   *
+   * @return  {void}
+   */
+  public ngOnChanges(changes: SimpleChanges): void {
     // Track changes in Configuration and see if user has even provided Configuration.
     if (changes.config && this.config) {
       // Assign User Configurations to Library Properties.
@@ -129,8 +138,13 @@ export class NgxFileUploaderComponent implements OnChanges {
 
   }
 
-  // Reset following properties.
-  resetFileUpload() {
+  /**
+   * resetFileUpload
+   * Reset following properties.
+   *
+   * @return  {void}
+   */
+  public resetFileUpload(): void {
     this.allowedFiles = [];
     this.Caption = [];
     this.notAllowedFiles = [];
@@ -138,8 +152,15 @@ export class NgxFileUploaderComponent implements OnChanges {
     this.enableUploadBtn = false;
   }
 
-  // When user selects files.
-  onChange(event: any) {
+  /**
+   * onChange hook
+   *  - Check when user selects files.
+   *
+   * @param   {any}   event
+   *
+   * @return  {void}
+   */
+  public onChange(event: any): void {
 
     this.notAllowedFiles = [];
     const fileExtRegExp: RegExp = /(?:\.([^.]+))?$/;
@@ -194,8 +215,12 @@ export class NgxFileUploaderComponent implements OnChanges {
     this.uploadPercent = 0;
     event.target.value = null;
   }
-
-  uploadFiles() {
+  /**
+   * uploadFiles
+   *
+   * @return  {void}
+   */
+  public uploadFiles(): void {
     this.progressBarShow = true;
     this.uploadStarted = true;
     this.notAllowedFiles = [];
@@ -211,26 +236,14 @@ export class NgxFileUploaderComponent implements OnChanges {
       );
     });
 
-    /*
-    Not Working, Headers null
-    // Contruct Headers
-    const headers = new HttpHeaders();
-    for (const key of Object.keys(this.headers)) {
-      headers.append(key, this.headers[key]);
-    }
-
-    // Contruct Params
-    const params = new HttpParams();
-    for (const key of Object.keys(this.params)) {
-      params.append(key, this.params[key]);
-    } */
-
     const options = {
       headers: this.headers,
       params: this.params,
     };
 
-    if (this.responseType) (options as any).responseType = this.responseType;
+    if (this.responseType) {
+       (options as any).responseType = this.responseType;
+    }
 
     this.http
       .request(this.method.toUpperCase(), this.uploadAPI, {
@@ -266,7 +279,7 @@ export class NgxFileUploaderComponent implements OnChanges {
 
             this.ApiResponse.emit(event);
           } else {
-            //console.log('Event Other: ', event);
+            // console.log('Event Other: ', event);
           }
         },
         (error) => {
@@ -277,8 +290,12 @@ export class NgxFileUploaderComponent implements OnChanges {
         }
       );
   }
-
-  handleErrors() {
+  /**
+   * handleErrors
+   *
+   * @return  {void}
+   */
+  public handleErrors(): void {
     this.progressBarShow = false;
     this.enableUploadBtn = false;
     this.uploadMsg = true;
@@ -287,9 +304,16 @@ export class NgxFileUploaderComponent implements OnChanges {
     this.uploadMsgClass = 'text-danger lead';
     this.uploadStarted = false;
   }
-
-  removeFile(i: any, sf_na: any) {
-    if (sf_na === 'sf') {
+  /**
+   * removeFile
+   *
+   * @param   {any}   i
+   * @param   {any}   sfNa
+   *
+   * @return  {void}
+   */
+  public removeFile(i: any, sfNa: any): void {
+    if (sfNa === 'sf') {
       this.allowedFiles.splice(i, 1);
       this.Caption.splice(i, 1);
     } else {
@@ -300,27 +324,49 @@ export class NgxFileUploaderComponent implements OnChanges {
       this.enableUploadBtn = false;
     }
   }
-
-  convertSize(fileSize: number): string {
+  /**
+   * convertSize
+   *
+   * @param   {number}  fileSize
+   *
+   * @return  {string}
+   */
+  public convertSize(fileSize: number): string {
     return fileSize < 1024000
       ? (fileSize / 1024).toFixed(2) + ' KB'
       : (fileSize / 1024000).toFixed(2) + ' MB';
   }
-
-  attachpinOnclick() {
+  /**
+   * attachpinOnclick
+   *
+   * @return  {void}
+   */
+  public attachpinOnclick(): void {
     const element = document.getElementById('sel' + this.id);
     if (element !== null) {
       element.click();
     }
   }
-
-  drop(event: any) {
+  /**
+   * drop
+   *
+   * @param   {any}   event
+   *
+   * @return  {void}
+   */
+  public drop(event: any): void {
     event.stopPropagation();
     event.preventDefault();
     this.onChange(event);
   }
-
-  allowDrop(event: any) {
+  /**
+   * allowDrop
+   *
+   * @param   {any}   event
+   *
+   * @return  {void}
+   */
+  public allowDrop(event: any): void {
     event.stopPropagation();
     event.preventDefault();
     event.dataTransfer.dropEffect = 'copy';
