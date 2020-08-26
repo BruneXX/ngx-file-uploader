@@ -285,6 +285,7 @@ export class NgxFileUploaderComponent implements OnChanges {
     this.afterUpload = true;
     this.uploadMsgText = this.replaceTexts.afterUploadMsg_error;
     this.uploadMsgClass = 'text-danger lead';
+    this.uploadStarted = false;
   }
 
   removeFile(i: any, sf_na: any) {

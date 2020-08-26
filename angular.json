@@ -184,6 +184,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ngx-file-uploader"
+    }
+  },
+  "defaultProject": "ngx-file-uploader",
+  "cli": {
+    "analytics": "043a29c0-79b4-4a21-b264-9e028ceffe93"
+  }
 }

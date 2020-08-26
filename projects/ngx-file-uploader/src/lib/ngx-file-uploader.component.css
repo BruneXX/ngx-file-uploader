@@ -25,6 +25,9 @@
   text-decoration: none;
   color: #ce0909;
 }
+.uploading-message {
+  margin: 15px 0;
+}
 /*--------------------- DRAG N DROP ----------------------*/
 .dragNDrop .div1 {
   display: border-box;
