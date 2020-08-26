@@ -17,6 +17,8 @@ import {
   HttpParams,
   HttpEventType,
 } from '@angular/common/http';
+import { Subscription, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-file-uploader',
@@ -73,6 +75,9 @@ export class NgxFileUploaderComponent implements OnChanges {
   public fileNameIndex = true;
 
   private idDate: number = +new Date();
+  /* Subscriptions */
+  private httpCallSubscription: Subscription;
+  private destroy = new Subject();
   /**
    * constructor
    *
@@ -136,6 +141,11 @@ export class NgxFileUploaderComponent implements OnChanges {
       }
     }
 
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   /**
@@ -245,14 +255,13 @@ export class NgxFileUploaderComponent implements OnChanges {
        (options as any).responseType = this.responseType;
     }
 
-    this.http
+    this.httpCallSubscription = this.http
       .request(this.method.toUpperCase(), this.uploadAPI, {
         body: formData,
         reportProgress: true,
         observe: 'events',
         ...options,
-      })
-      .subscribe(
+      }).pipe(takeUntil(this.destroy)).subscribe(
         (event) => {
           // Upload Progress
           if (event.type === HttpEventType.UploadProgress) {
@@ -370,5 +379,13 @@ export class NgxFileUploaderComponent implements OnChanges {
     event.stopPropagation();
     event.preventDefault();
     event.dataTransfer.dropEffect = 'copy';
+  }
+  /**
+   * cancelApiCall
+   *
+   * @return  {void}
+   */
+  public cancelApiCall(): void {
+    this.httpCallSubscription.unsubscribe();
   }
 }
