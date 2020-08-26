@@ -14,7 +14,7 @@ npm i ngx-file-uploader
   in your index.html.
 - Import NgxFileUploaderModule inside your app.module.ts 
   ```javascript
-  import { NgxFileUploaderModule } from "ngx-file-uploader";
+  import { NgxFileUploaderModule } from "ngxc-file-uploader";
   ```
   ```javascript
   @NgModule({
@@ -124,7 +124,7 @@ You have seen that by using 'resetUpload' property, you can reset the module eas
     - Remember to import ViewChild and AngularFileUploaderComponent properly in your component.
       ```javascript
         import { ViewChild } from '@angular/core';
-        import { AngularFileUploaderComponent } from "ngx-file-uploader";
+        import { AngularFileUploaderComponent } from "ngxc-file-uploader";
       ```
   - That's it.....all done, now just use
     ```javascript
