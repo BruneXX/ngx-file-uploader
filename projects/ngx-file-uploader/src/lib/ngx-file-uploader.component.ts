@@ -386,6 +386,8 @@ export class NgxFileUploaderComponent implements OnChanges {
    * @return  {void}
    */
   public cancelApiCall(): void {
-    this.httpCallSubscription.unsubscribe();
+    if (this.httpCallSubscription) {
+      this.httpCallSubscription.unsubscribe();
+    }
   }
 }
