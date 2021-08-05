@@ -1,6 +1,6 @@
 {
   "name": "ngx-file-uploader",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng build ngx-file-uploader --prod && ng serve lib-demo",
