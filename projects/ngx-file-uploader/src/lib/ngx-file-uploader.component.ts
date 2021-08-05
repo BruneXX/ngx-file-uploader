@@ -38,7 +38,7 @@ export class NgxFileUploaderComponent implements OnChanges {
   ApiResponse = new EventEmitter();
   
   @Output()
-  uploadStatus = new EventEmitter();
+  uploadInitiated: EventEmitter<boolean> = new EventEmitter();
 
   @Output()
   everythingDone: EventEmitter<UploadInfo[]> = new EventEmitter<UploadInfo[]>();
@@ -240,6 +240,7 @@ export class NgxFileUploaderComponent implements OnChanges {
     let isError = false;
     this.isAllowedFileSingle = this.allowedFiles.length <= 1;
     const formData = new FormData();
+    this.uploadInitiated.emit(true);
 
     // Add data to be sent in this request
     this.allowedFiles.forEach((file, i) => {
