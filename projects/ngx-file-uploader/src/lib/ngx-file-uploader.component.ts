@@ -36,6 +36,9 @@ export class NgxFileUploaderComponent implements OnChanges {
   // Outputs
   @Output()
   ApiResponse = new EventEmitter();
+  
+  @Output()
+  uploadStatus = new EventEmitter();
 
   @Output()
   everythingDone: EventEmitter<UploadInfo[]> = new EventEmitter<UploadInfo[]>();
