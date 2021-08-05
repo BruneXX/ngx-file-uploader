@@ -1,6 +1,6 @@
 {
   "name": "ngxc-file-uploader",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
@@ -9,7 +9,7 @@
   "dependencies": {
     "tslib": "^2.0.0"
   },
-  "description": "Ngx file uploader is an Angular 9/10 + file uploader",
+  "description": "Ngxc file uploader is an Angular 9/10 + file uploader",
   "deprecated": false,
   "readme": "README.md",
   "keywords": [

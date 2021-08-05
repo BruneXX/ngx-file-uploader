@@ -29,17 +29,13 @@ export class NgxFileUploaderComponent implements OnChanges {
   // Inputs
   @Input()
   config: AngularFileUploaderConfig;
-
   @Input()
   resetUpload = false;
-
   // Outputs
   @Output()
   ApiResponse = new EventEmitter();
-  
   @Output()
   uploadInitiated: EventEmitter<boolean> = new EventEmitter();
-
   @Output()
   everythingDone: EventEmitter<UploadInfo[]> = new EventEmitter<UploadInfo[]>();
 
@@ -145,7 +141,11 @@ export class NgxFileUploaderComponent implements OnChanges {
     }
 
   }
-
+  /**
+   * ngOnDestroy
+   *
+   * @return  {void}
+   */
   public ngOnDestroy(): void {
     this.destroy.next();
     this.destroy.complete();
@@ -174,7 +174,6 @@ export class NgxFileUploaderComponent implements OnChanges {
    * @return  {void}
    */
   public onChange(event: any): void {
-
     this.notAllowedFiles = [];
     const fileExtRegExp: RegExp = /(?:\.([^.]+))?$/;
     let fileList: FileList;
@@ -234,13 +233,13 @@ export class NgxFileUploaderComponent implements OnChanges {
    * @return  {void}
    */
   public uploadFiles(): void {
+    this.uploadInitiated.emit(true);
     this.progressBarShow = true;
     this.uploadStarted = true;
     this.notAllowedFiles = [];
     let isError = false;
     this.isAllowedFileSingle = this.allowedFiles.length <= 1;
     const formData = new FormData();
-    this.uploadInitiated.emit(true);
 
     // Add data to be sent in this request
     this.allowedFiles.forEach((file, i) => {
@@ -278,6 +277,7 @@ export class NgxFileUploaderComponent implements OnChanges {
               this.progressBarShow = false;
               this.enableUploadBtn = false;
               this.uploadStarted = false;
+              this.uploadInitiated.emit(false);
               this.uploadMsg = true;
               this.afterUpload = true;
               if (!isError) {
@@ -316,6 +316,7 @@ export class NgxFileUploaderComponent implements OnChanges {
     this.uploadMsgText = this.replaceTexts.afterUploadMsg_error;
     this.uploadMsgClass = 'text-danger lead';
     this.uploadStarted = false;
+    this.uploadInitiated.emit(false);
   }
   /**
    * removeFile
