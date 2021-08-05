@@ -1,6 +1,6 @@
 {
   "name": "ngxc-file-uploader",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^10.0.5",
@@ -29,6 +29,8 @@
     "angular 8",
     "angular 9",
     "angular 10",
+    "angular 11",
+    "angular 12",
     "universal",
     "img",
     "image",
