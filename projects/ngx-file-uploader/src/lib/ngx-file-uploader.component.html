@@ -46,11 +46,11 @@
           <span class="progress-bar progress-bar-success" role="progressbar"
             [ngStyle]="{'width':uploadPercent+'%'}">{{uploadPercent}}%</span>
         </div>
-        <br>
-        <br>
+        <br />
+        <br />
       </div>
-      <button *ngIf="!uploadStarted" class="btn btn-success afu-upload-btn" type="button" (click)="uploadFiles()"
-        [disabled]=!enableUploadBtn>{{replaceTexts?.uploadBtn}}</button>
+      <button *ngIf="!uploadStarted && enableUploadBtn" class="btn btn-success afu-upload-btn" type="button" (click)="uploadFiles()"
+        >{{replaceTexts?.uploadBtn}}</button>
       <div *ngIf="uploadStarted" class="uploading-message" >{{replaceTexts?.pleaseWaitMessage}}</div>
       <br>
 </div>
