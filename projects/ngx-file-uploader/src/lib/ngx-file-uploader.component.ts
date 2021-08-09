@@ -5,6 +5,7 @@ import {
   OnChanges,
   Output,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import {
   ReplaceTexts,
@@ -23,21 +24,22 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'ngx-file-uploader',
   templateUrl: './ngx-file-uploader.component.html',
-  styleUrls: ['./ngx-file-uploader.component.css'],
+  styleUrls: ['./ngx-file-uploader.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NgxFileUploaderComponent implements OnChanges {
   // Inputs
   @Input()
-  config: AngularFileUploaderConfig;
+  public config: AngularFileUploaderConfig;
   @Input()
-  resetUpload = false;
+  public resetUpload = false;
   // Outputs
   @Output()
-  ApiResponse = new EventEmitter();
+  public ApiResponse = new EventEmitter();
   @Output()
-  uploadInitiated: EventEmitter<boolean> = new EventEmitter();
+  public uploadInitiated: EventEmitter<boolean> = new EventEmitter();
   @Output()
-  everythingDone: EventEmitter<UploadInfo[]> = new EventEmitter<UploadInfo[]>();
+  public everythingDone: EventEmitter<UploadInfo[]> = new EventEmitter<UploadInfo[]>();
 
   // Properties
   public theme: string;
